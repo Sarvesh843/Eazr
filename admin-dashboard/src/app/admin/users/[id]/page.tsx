@@ -1,6 +1,7 @@
+
 import React from 'react';
 
-// Define User type
+// Define the User type
 interface User {
   id: string;
   name: string;
@@ -10,7 +11,7 @@ interface User {
   address: string;
 }
 
-// Fetch user details directly
+// Dummy function to simulate fetching user data
 async function fetchUserDetails(id: string): Promise<User> {
   const dummyUser = {
     id: id,
@@ -20,16 +21,12 @@ async function fetchUserDetails(id: string): Promise<User> {
     profilePicture: 'https://via.placeholder.com/150',
     address: '123 Main St, Springfield, IL, 62701',
   };
-
   return dummyUser;
 }
 
-// Async Server Component to render the user profile
 const UserProfile = async ({ params }: { params: { id: string } }) => {
-  const { id } = await params;
-
-  // Fetch user data based on the id
-  const user = await fetchUserDetails(id);
+  // Directly accessing params.id
+  const user = await fetchUserDetails(params.id);
 
   return (
     <div style={{ padding: '32px', fontFamily: 'Arial, sans-serif', backgroundColor: '#f9fafb', height: '100vh' }}>
