@@ -27,7 +27,7 @@ const AdminLogin: React.FC = () => {
     if (otp === '7710') { // Mocked OTP for testing
       // In a real app, call the API to verify OTP and get a token
       const token = 'sampleToken'; // Replace with actual token from the response
-      document.cookie = `token=${token}; path=/`;
+      // document.cookie = `token=${token}; path=/`;
       router.push('/admin/dashboard');
     } else {
       alert('Invalid OTP. Please try again.');
