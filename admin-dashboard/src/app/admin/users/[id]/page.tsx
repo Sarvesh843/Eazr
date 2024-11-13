@@ -1,18 +1,28 @@
-
+// import { cookies } from 'next/headers';
+// import { redirect } from 'next/navigation';
 import React from 'react';
 
-// Define the User type
 interface User {
   id: string;
   name: string;
   email: string;
   contactNumber: string;
   profilePicture: string;
-  address: string;
+  address:string;
 }
 
-// Dummy function to simulate fetching user data
 async function fetchUserDetails(id: string): Promise<User> {
+  // try {
+  //   const response = await axios.get('https://eazrdaily.eazr.in//admin/users/[id]', {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  //   return response.data;
+  // } catch (error) {
+  //   console.error('Error fetching user:', error);
+  //   return [];
+  // }
   const dummyUser = {
     id: id,
     name: 'John Doe',
@@ -20,21 +30,44 @@ async function fetchUserDetails(id: string): Promise<User> {
     contactNumber: '123-456-7890',
     profilePicture: 'https://via.placeholder.com/150',
     address: '123 Main St, Springfield, IL, 62701',
+
   };
   return dummyUser;
 }
 
 const UserProfile = async ({ params }: { params: { id: string } }) => {
-  // Directly accessing params.id
-  const user = await fetchUserDetails(params.id);
+//   const token = cookies().get('token')?.value;
+// const token ="dummytoken"
+
+//   if (!token) {
+//     redirect('/admin/login');
+//   }
+
+//   const user = await fetchUserDetails(params.id, token);// if token is provided
+
+  const user = await fetchUserDetails(params.id,);
+
 
   return (
-    <div style={{ padding: '32px', fontFamily: 'Arial, sans-serif', backgroundColor: '#f9fafb', height: '100vh' }}>
-      <h1 style={{ fontSize: '2.25rem', fontWeight: '700', marginBottom: '24px', color: '#333' }}>
+    <div style={{ padding: '32px', fontFamily: 'Arial, sans-serif', backgroundColor: '#f9fafb', height:"100vh" }}>
+      <h1
+        style={{
+          fontSize: '2.25rem',
+          fontWeight: '700',
+          marginBottom: '24px',
+          color: '#333',
+        }}
+      >
         User Profile
       </h1>
 
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '24px' }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          marginBottom: '24px',
+        }}
+      >
         {/* Profile Picture */}
         <img
           src={user.profilePicture}
