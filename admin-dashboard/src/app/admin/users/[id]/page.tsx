@@ -36,6 +36,7 @@ async function fetchUserDetails(id: string): Promise<User> {
 }
 
 const UserProfile = async ({ params }: { params: Promise<{ id: string }> }) => {
+  
 //   const token = cookies().get('token')?.value;
 // const token ="dummytoken"
 
