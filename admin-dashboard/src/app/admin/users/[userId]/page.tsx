@@ -9,19 +9,8 @@ interface User {
   address: string;
 }
 
-// Fetch user details
+// Fetch user details directly
 async function fetchUserDetails(id: string): Promise<User> {
-    // try {
-  //   const response = await axios.get('https://eazrdaily.eazr.in//admin/users/[id]', {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   });
-  //   return response.data;
-  // } catch (error) {
-  //   console.error('Error fetching user:', error);
-  //   return [];
-  // }
   const dummyUser = {
     id: id,
     name: 'John Doe',
@@ -30,14 +19,20 @@ async function fetchUserDetails(id: string): Promise<User> {
     profilePicture: 'https://via.placeholder.com/150',
     address: '123 Main St, Springfield, IL, 62701',
   };
+
+  // Simulating an async API request, you can replace this with a real API call
   return dummyUser;
 }
 
-// Define the component
-const UserProfile = ({ user }: { user: User }) => {
+// Async Server Component to render the user profile
+const UserProfile = async ({ params }: { params: { id: string } }) => {
+  const user = await fetchUserDetails(params.id); // Fetch data directly in the component
+
   return (
-    <div style={{ padding: '32px', fontFamily: 'Arial, sans-serif', backgroundColor: '#f9fafb', height: "100vh" }}>
-      <h1 style={{ fontSize: '2.25rem', fontWeight: '700', marginBottom: '24px', color: '#333' }}>User Profile</h1>
+    <div style={{ padding: '32px', fontFamily: 'Arial, sans-serif', backgroundColor: '#f9fafb', height: '100vh' }}>
+      <h1 style={{ fontSize: '2.25rem', fontWeight: '700', marginBottom: '24px', color: '#333' }}>
+        User Profile
+      </h1>
 
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: '24px' }}>
         {/* Profile Picture */}
@@ -55,34 +50,25 @@ const UserProfile = ({ user }: { user: User }) => {
 
         {/* User Details */}
         <div>
-          <p style={{ fontSize: '1.5rem', marginBottom: '8px' }}><strong>ID:</strong> {user.id}</p>
-          <p style={{ fontSize: '1.5rem', marginBottom: '8px' }}><strong>Name:</strong> {user.name}</p>
-          <p style={{ fontSize: '1.5rem', marginBottom: '8px' }}><strong>Email:</strong> {user.email}</p>
-          <p style={{ fontSize: '1.5rem', marginBottom: '8px' }}><strong>Contact Number:</strong> {user.contactNumber}</p>
-          <p style={{ fontSize: '1.5rem', marginBottom: '8px' }}><strong>Address:</strong> {user.address}</p>
+          <p style={{ fontSize: '1.5rem', marginBottom: '8px' }}>
+            <strong>ID:</strong> {user.id}
+          </p>
+          <p style={{ fontSize: '1.5rem', marginBottom: '8px' }}>
+            <strong>Name:</strong> {user.name}
+          </p>
+          <p style={{ fontSize: '1.5rem', marginBottom: '8px' }}>
+            <strong>Email:</strong> {user.email}
+          </p>
+          <p style={{ fontSize: '1.5rem', marginBottom: '8px' }}>
+            <strong>Contact Number:</strong> {user.contactNumber}
+          </p>
+          <p style={{ fontSize: '1.5rem', marginBottom: '8px' }}>
+            <strong>Address:</strong> {user.address}
+          </p>
         </div>
       </div>
     </div>
   );
 };
-
-export async function getServerSideProps({ params }: { params: { id: string } }) {
-  //   const token = cookies().get('token')?.value;
-// const token ="dummytoken"
-
-//   if (!token) {
-//     redirect('/admin/login');
-//   }
-
-//   const user = await fetchUserDetails(params.id, token);// if token is provided
-  const user = await fetchUserDetails(params.id);
-
-  // Return the user data as props
-  return {
-    props: {
-      user,
-    },
-  };
-}
 
 export default UserProfile;
