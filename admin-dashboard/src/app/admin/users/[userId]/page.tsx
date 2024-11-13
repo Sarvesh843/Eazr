@@ -11,7 +11,7 @@ interface User {
   address:string;
 }
 
-async function fetchUserDetails(id: string, token: string): Promise<User> {
+async function fetchUserDetails(id: string): Promise<User> {
   // try {
   //   const response = await axios.get('https://eazrdaily.eazr.in//admin/users/[id]', {
   //     headers: {
@@ -37,13 +37,16 @@ async function fetchUserDetails(id: string, token: string): Promise<User> {
 
 const UserProfile = async ({ params }: { params: { id: string } }) => {
 //   const token = cookies().get('token')?.value;
-const token ="dummytoken"
+// const token ="dummytoken"
 
-  if (!token) {
-    redirect('/admin/login');
-  }
+//   if (!token) {
+//     redirect('/admin/login');
+//   }
 
-  const user = await fetchUserDetails(params.id, token);
+//   const user = await fetchUserDetails(params.id, token);// if token is provided
+
+  const user = await fetchUserDetails(params.id,);
+
 
   return (
     <div style={{ padding: '32px', fontFamily: 'Arial, sans-serif', backgroundColor: '#f9fafb', height:"100vh" }}>

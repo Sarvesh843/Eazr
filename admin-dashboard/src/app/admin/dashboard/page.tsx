@@ -10,7 +10,7 @@ interface User {
   contactNumber: string;
 }
 
-async function fetchUsers(token: string): Promise<User[]> {
+async function fetchUsers(): Promise<User[]> {
   // try {
   //   const response = await axios.get('https://eazrdaily.eazr.in/users', {
   //     headers: {
@@ -33,13 +33,15 @@ async function fetchUsers(token: string): Promise<User[]> {
 
 const AdminDashboard = async () => {
   // const token = cookies().get('token')?.value;
-  const token = "demotoken"
+  // const token = "demotoken"
 
-  if (!token) {
-    redirect('/admin/login');
-  }
+  // if (!token) {
+  //   redirect('/admin/login');
+  // }
+  // const users = await fetchUsers(token); // if token is provided
 
-  const users = await fetchUsers(token);
+
+  const users = await fetchUsers();
 
   return (
     <div style={{ padding: '32px', fontFamily: 'Arial, sans-serif', backgroundColor: '#f9fafb' }}>
