@@ -1,4 +1,6 @@
-import React from 'react';
+"use client";
+
+import React, { useEffect, useState } from 'react';
 
 interface User {
   id: string;
@@ -22,9 +24,9 @@ async function fetchUserDetails(id: string): Promise<User> {
 }
 
 const UserProfile: React.FC<{ params: { id: string } }> = ({ params }) => {
-  const [user, setUser] = React.useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const loadUser = async () => {
       const fetchedUser = await fetchUserDetails(params.id);
       setUser(fetchedUser);
