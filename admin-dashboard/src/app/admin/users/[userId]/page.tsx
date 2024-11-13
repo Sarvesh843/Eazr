@@ -12,13 +12,23 @@ interface User {
 }
 
 async function fetchUserDetails(id: string, token: string): Promise<User> {
-  // Replace with actual API call
+  // try {
+  //   const response = await axios.get('https://eazrdaily.eazr.in//admin/users/[id]', {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  //   return response.data;
+  // } catch (error) {
+  //   console.error('Error fetching user:', error);
+  //   return [];
+  // }
   const dummyUser = {
     id: id,
     name: 'John Doe',
     email: 'john@example.com',
     contactNumber: '123-456-7890',
-    profilePicture: 'https://via.placeholder.com/150', // Example image URL
+    profilePicture: 'https://via.placeholder.com/150',
     address: '123 Main St, Springfield, IL, 62701',
 
   };

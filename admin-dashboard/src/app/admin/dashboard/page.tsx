@@ -12,7 +12,7 @@ interface User {
 
 async function fetchUsers(token: string): Promise<User[]> {
   // try {
-  //   const response = await axios.get('https://example.com/users', {
+  //   const response = await axios.get('https://eazrdaily.eazr.in/users', {
   //     headers: {
   //       Authorization: `Bearer ${token}`,
   //     },
