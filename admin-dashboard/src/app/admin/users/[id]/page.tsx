@@ -21,8 +21,18 @@ async function fetchUserDetails(id: string): Promise<User> {
   return dummyUser;
 }
 
-const UserProfile = async ({ params }: { params: { id: string } }) => {
-  const user = await fetchUserDetails(params.id);
+const UserProfile: React.FC<{ params: { id: string } }> = ({ params }) => {
+  const [user, setUser] = React.useState<User | null>(null);
+
+  React.useEffect(() => {
+    const loadUser = async () => {
+      const fetchedUser = await fetchUserDetails(params.id);
+      setUser(fetchedUser);
+    };
+    loadUser();
+  }, [params.id]);
+
+  if (!user) return <div>Loading...</div>;
 
   return (
     <div style={{ padding: '32px', fontFamily: 'Arial, sans-serif', backgroundColor: '#f9fafb', height: "100vh" }}>
